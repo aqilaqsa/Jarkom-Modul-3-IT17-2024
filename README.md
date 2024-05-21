@@ -15,7 +15,7 @@
 
 ### Config
 #### Arakis (Router)
-```
+```bash
 auto eth0
 iface eth0 inet dhcp
 
@@ -40,7 +40,7 @@ iface eth4 inet static
 	netmask 255.255.255.0
 ```
 #### Mohiam (DHCP Server) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.3.2
@@ -49,7 +49,7 @@ iface eth0 inet static
 ```
 
 #### Irulan (DNS Server) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.4.1
@@ -58,7 +58,7 @@ iface eth0 inet static
 ```
 
 #### Chani (Database Server) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.4.1
@@ -67,7 +67,7 @@ iface eth0 inet static
 ```
 
 #### Stilgar (Load Balancer) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.4.2
@@ -75,7 +75,7 @@ iface eth0 inet static
 	gateway 10.72.4.0
 ```
 #### Leto (Laravel Worker) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.2.1
@@ -84,7 +84,7 @@ iface eth0 inet static
 ```
 
 #### Duncan (Laravel Worker) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.2.2
@@ -93,7 +93,7 @@ iface eth0 inet static
 ```
 
 #### Jessica (Laravel Worker) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.2.3
@@ -102,7 +102,7 @@ iface eth0 inet static
 ```
 
 #### Vladimir (PHP Worker) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.1.1
@@ -110,7 +110,7 @@ iface eth0 inet static
 	gateway 10.72.1.0
 ```
 #### Rabban (PHP Worker)
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.1.2
@@ -118,7 +118,7 @@ iface eth0 inet static
 	gateway 10.72.1.0
 ```
 #### Vladimir (PHP Worker) 
-```
+```bash
 auto eth0
 iface eth0 inet static
 	address 10.72.1.3
@@ -132,7 +132,7 @@ Planet Caladan sedang mengalami krisis karena kehabisan spice, klan atreides ber
 
 #### Script
 
-```
+```bash
 echo 'nameserver 192.168.122.1' > /etc/resolv.conf
 apt-get update
 apt-get install bind9 -y  
@@ -206,7 +206,7 @@ Client yang melalui House Harkonen mendapatkan range IP dari [prefix IP].1.14 - 
 Melakukan setup DHCP Relay terlebih dahulu pada Arakis.
 
 ` /etc/default/isc-dhcp-relay `
-```
+```bash
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.72.0.0/16
 apt-get update
 apt install isc-dhcp-relay -y
@@ -238,7 +238,7 @@ service isc-dhcp-relay restart
 ```
 Konfigurasi DHCP Server pada Mohiam
 
-```
+```bash
 echo 'nameserver 10.72.3.1' >> /etc/resolv.conf   # Pastikan DNS Server sudah berjalan 
 apt-get update
 apt-get install isc-dhcp-server -y
@@ -277,7 +277,7 @@ Client yang melalui House Atreides mendapatkan range IP dari [prefix IP].2.15 - 
 
 Konfigurasi DHCP Server pada Mohiam
 
-```
+```bash
 echo 'nameserver 10.72.3.1' >> /etc/resolv.conf   # Pastikan DNS Server sudah berjalan 
 apt-get update
 apt-get install isc-dhcp-server -y
@@ -318,7 +318,7 @@ service isc-dhcp-server restart
 Client mendapatkan DNS dari Princess Irulan dan dapat terhubung dengan internet melalui DNS tersebut 
 
 Ubah konfigurasi DHCP Server pada Mohiam agar mengarah ke IP DNS (10.72.3.1)
-```
+```bash
 subnet 10.72.1.0 netmask 255.255.255.0 {
     range 10.72.1.14 10.72.1.28;
     range 10.72.1.49 10.72.1.70;
@@ -342,7 +342,7 @@ subnet 10.72.4.0 netmask 255.255.255.0 {
 }
 ```
 Lakukan konfigurasi DNS Server pada Irulan
-```
+```bash
 nano /etc/bind/named.conf.options
 forwarders {
   192.168.122.1;
@@ -364,7 +364,7 @@ Durasi DHCP server meminjamkan alamat IP kepada Client yang melalui House Harkon
 
 Tambahkan konfigurasi DHCP Server pada Mohiam
 
-```
+```bash
 subnet 10.72.1.0 netmask 255.255.255.0 {
     range 10.72.1.14 10.72.1.28;
     range 10.72.1.49 10.72.1.70;
@@ -402,7 +402,7 @@ Vladimir Harkonen memerintahkan setiap worker(harkonen) PHP, untuk melakukan kon
 
 Melakukan konfigurasi sebagai berikut pada php worker untuk melakukan download dan unzip menggunakan command wget
 
-```
+```bash
 wget -O '/var/www/harkonen.IT17.com' 'https://drive.usercontent.google.com/download?id=1lmnXJUbyx1JDt2OA5z_1dEowxozfkn30&export=download&authuser=0'
 unzip -o /var/www/harkonen.IT17.com -d /var/www/
 rm /var/www/harkonen.IT17.com
@@ -411,7 +411,7 @@ mv /var/www/modul-3 /var/www/harkonen.IT17.com
 
 melakukan konfigurasi pada nginx
 
-```
+```bash
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/harkonen.IT17.com
 ln -s /etc/nginx/sites-available/harkonen.IT17.com /etc/nginx/sites-enabled/
 rm /etc/nginx/sites-enabled/default
@@ -447,7 +447,7 @@ Aturlah agar Stilgar dari fremen dapat dapat bekerja sama dengan maksimal, lalu 
 
 Domain pada DNS Server diarahkan ke Load Balancer Stilgar
 
-```
+```bash
 atreides="
 ;
 ;BIND data file for local loopback interface
@@ -483,8 +483,7 @@ harkonen="
 echo "$harkonen" > /etc/bind/jarkom/harkonen.IT17.com
 ```
 Konfigurasi untuk nginx pada node stilgar 
-```
-
+```bash
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/lb_php
 
 
@@ -535,7 +534,7 @@ konfigurasinya sama dengan Soal 7, tinggal menambahkan beberapa konfigurasi untu
 
 #### Round-robin
 
-```
+```bash
 echo ' upstream worker {
     server 10.72.1.1;
     server 10.72.1.2;
@@ -544,7 +543,7 @@ echo ' upstream worker {
 ```
 #### Generic Hash 
 
-```
+```bash
 echo ' upstream worker {
     hash $request_uri consistent;
     server 10.72.1.1;
@@ -553,9 +552,9 @@ echo ' upstream worker {
 }
 
 ```
-#### Least Connetion 
+#### Least Connection 
 
-```
+```bash
 echo ' upstream worker {
     least_conn;
     server 10.72.1.1;
@@ -566,7 +565,7 @@ echo ' upstream worker {
 ```
 #### IP hash  
 
-```
+```bash
 echo ' upstream worker {
     ip_hash;
     server 10.72.1.1;
@@ -576,7 +575,7 @@ echo ' upstream worker {
 
 ```
 #### Stilgar.sh
-```
+```bash
 
 echo ' upstream worker {
     #    hash $request_uri consistent;
@@ -633,7 +632,7 @@ Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunaka
 Masukan script yang sama seperti no.7 hanya saja jumlah worker disesuaikan
 
 ##### 3 Worker
-```
+```bash
 echo ' upstream worker {
     #    hash $request_uri consistent;
     #    least_conn;
@@ -645,7 +644,7 @@ echo ' upstream worker {
 ```
 
 ##### 2 Worker
-```
+```bash
 echo ' upstream worker {
     #    hash $request_uri consistent;
     #    least_conn;
@@ -657,7 +656,7 @@ echo ' upstream worker {
 ```
 
 ##### 1 Worker
-```
+```bash
 echo ' upstream worker {
     #    hash $request_uri consistent;
     #    least_conn;
@@ -685,13 +684,13 @@ Selanjutnya coba tambahkan keamanan dengan konfigurasi autentikasi di LB dengan 
 
 Membuat folder rahasisakita dengan " mkdir /etc/nginx/supersecret " lalu " htpasswd -c /etc/nginx/supersecret/htpasswd secmart " untuk membuat kredensial.
 
-```
+```bash
 Username: secmart
 Password: kcksIT17
 
 ```
 Menambahkan script didalam Stilgar
-```
+```bash
 
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/lb_php
 mkdir /etc/nginx/supersecret
@@ -738,3 +737,547 @@ Jalankan " lynx http://harkonen.IT17.com/ " pada Paul (Client) untuk melihat apa
 <img src="img/10.3.png">
 
 ### Soal 11
+
+Lalu buat untuk setiap request yang mengandung /dune akan di proxy passing menuju halaman https://www.dunemovie.com.au/. (11) hint: (proxy_pass)
+
+- Lakukan konfigurasi proxy pass di **Stilgar** (Load Balancer) untuk melakukan redirect semua akses yang menggunakan endpoint `/dune`.
+
+#### Script:
+
+```bash
+echo 'upstream worker {
+    server 10.72.1.1; # vladimir
+    server 10.72.1.2; # rabban
+    server 10.72.1.3; # feyd
+}
+
+server {
+    listen 80;
+    server_name harkonen.IT17.com www.harkonen.IT17.com;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        proxy_pass http://worker;
+    }
+
+    location /dune {
+        proxy_pass https://www.dunemovie.com.au/;
+        proxy_set_header Host www.dunemovie.com.au;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}' > /etc/nginx/sites-available/lb_php
+
+
+ln -s /etc/nginx/sites-available/lb_php /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+
+service nginx restart
+```
+
+- Nginx di sini berperan sebagai intermediary.
+
+#### Testing
+Testing dilakukan dengan ```lynx http://harkonen.IT17.com/dune``` di terminal client (contoh: **Dmitri**)
+
+#### Output
+
+### Soal 12
+
+Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].1.37, [Prefix IP].1.67, [Prefix IP].2.203, dan [Prefix IP].2.207. (12) hint: (fixed in dulu clientnya)
+
+#### Script:
+
+```bash
+echo 'nameserver 10.72.3.1' >> /etc/resolv.conf   # MAKE SURE DNS SERVER IRULAN IS RUNNING!!!
+apt-get update
+apt-get install isc-dhcp-server -y
+
+# Set DHCP Server to listen on eth0
+interfaces="INTERFACESv4=\"eth0\"
+INTERFACESv6=\"\"
+"
+echo "$interfaces" > /etc/default/isc-dhcp-server
+
+# Configure DHCP server
+subnet="option domain-name \"example.org\";
+option domain-name-servers ns1.example.org, ns2.example.org;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+subnet 10.72.1.0 netmask 255.255.255.0 {
+    range 10.72.1.14 10.72.1.28;
+    range 10.72.1.49 10.72.1.70;
+    option routers 10.72.1.0;
+    option broadcast-address 10.72.1.255;
+    option domain-name-servers 10.72.3.1;
+    default-lease-time 300;
+    max-lease-time 5220;
+}
+
+subnet 10.72.2.0 netmask 255.255.255.0 {
+    range 10.72.2.15 10.72.2.25;
+    range 10.72.2.200 10.72.2.210;
+    option routers 10.72.2.0; 
+    option broadcast-address 10.72.2.255;
+    option domain-name-servers 10.72.3.1;
+    default-lease-time 1200;
+    max-lease-time 5220;
+}
+
+subnet 10.72.3.0 netmask 255.255.255.0 {
+}
+
+subnet 10.72.4.0 netmask 255.255.255.0 {
+}
+# DMITRI FIXED ADDRESS
+host Dmitri {
+    hardware ethernet 3a:80:a4:67:86:73; #eth0 (yg konek ke dhcp relay arakis)
+    fixed-address 10.72.1.37;
+}
+"
+echo "$subnet" > /etc/dhcp/dhcpd.conf
+
+# Restart DHCP service to apply changes
+service isc-dhcp-server restart
+```
+
+#### Testing
+Testing dilakukan dengan cara:
+1. ```http://harkonen.IT17.com/``` di Client yang diberikan fixed address. (Contoh: **Dmitri**)
+2. ```http://harkonen.IT17.com/``` di Client yang tidak diberikan fixed address. (Contoh: **Paul**)
+
+#### Output
+
+### Soal 13
+
+Semua data yang diperlukan, diatur pada Chani dan harus dapat diakses oleh Leto, Duncan, dan Jessica. (13)
+
+#### Script:
+
+- Atur konfigurasi di database **Chani**:
+
+```bash
+# Set DNS resolver
+echo 'nameserver 10.72.3.1' > /etc/resolv.conf
+
+# Update package list and install MariaDB server
+apt-get update
+apt-get install -y mariadb-server
+
+# Start MariaDB service
+service mysql start
+
+# Update MariaDB configuration to allow remote connections
+cat <<EOF > /etc/mysql/mariadb.conf.d/50-server.cnf
+[mysqld]
+bind-address = 0.0.0.0
+EOF
+
+# Restart MariaDB service to apply configuration changes
+service mysql restart
+
+# Wait for the server to restart
+sleep 5
+
+# MySQL commands to set up user and database
+echo "
+DROP USER IF EXISTS 'kelompokIT17'@'%';
+DROP USER IF EXISTS 'kelompokIT17'@'localhost';
+
+DROP DATABASE IF EXISTS dbkelompokIT17;
+DROP DATABASE IF EXISTS DADDYS_HOME;
+DROP DATABASE IF EXISTS GOJO_IS_BACK;
+DROP DATABASE IF EXISTS NAH_ID_WIN;
+
+CREATE USER 'kelompokIT17'@'%' IDENTIFIED BY 'passwordIT17';
+CREATE USER 'kelompokIT17'@'localhost' IDENTIFIED BY 'passwordIT17';
+
+CREATE DATABASE dbkelompokIT17;
+CREATE DATABASE DADDYS_HOME;
+CREATE DATABASE GOJO_IS_BACK;
+CREATE DATABASE NAH_ID_WIN;
+
+GRANT ALL PRIVILEGES ON *.* TO 'kelompokIT17'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'kelompokIT17'@'localhost';
+
+FLUSH PRIVILEGES;
+" | mysql -u root -p
+```
+
+Lalu, masuk ke tiap worker Laravel **(Leto, Duncan, dan Jessica)** dengan script berikut:
+```bash
+echo 'nameserver 10.72.3.1' > /etc/resolv.conf
+apt-get update
+apt-get install lynx -y
+apt-get install mariadb-client -y
+apt-get install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
+
+curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+
+apt-get update
+apt-get install php8.0-mbstring php8.0-xml php8.0-cli   php8.0-common php8.0-intl php8.0-opcache php8.0-readline php8.0-mysql php8.0-fpm php8.0-curl unzip wget -y
+apt-get install nginx -y
+
+service nginx start
+service php8.0-fpm start
+```
+
+#### Testing
+Testing dilakukan dengan ```mariadb --host=10.72.4.1 --port=3306 --user=kelompokIT17 --password=passwordIT17 dbkelompokIT17 -e "SHOW DATABASES;"``` di terminal salah satu worker Laravel.
+
+#### Output
+
+### Soal 14
+
+Leto, Duncan, dan Jessica memiliki atreides Channel sesuai dengan quest guide berikut. Jangan lupa melakukan instalasi PHP8.0 dan Composer (14)
+
+#### Script:
+
+Jalankan script berikut di worker-worker Laravel:
+
+```bash
+# Install Composer
+wget https://getcomposer.org/download/2.0.13/composer.phar
+chmod +x composer.phar
+mv composer.phar /usr/local/bin/composer
+
+# Install Git
+apt-get update
+apt-get install git -y
+
+# Clone the Laravel project
+cd /var/www
+git clone https://github.com/martuafernando/laravel-praktikum-jarkom
+cd /var/www/laravel-praktikum-jarkom
+composer update
+
+# Configure .env file
+cp .env.example .env
+echo 'APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=10.72.4.1
+DB_PORT=3306
+DB_DATABASE=dbkelompokIT17
+DB_USERNAME=kelompokIT17
+DB_PASSWORD=passwordIT17
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_HOST="${PUSHER_HOST}"
+VITE_PUSHER_PORT="${PUSHER_PORT}"
+VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"' > .env
+
+# Laravel setup
+php artisan key:generate
+php artisan config:cache
+php artisan migrate
+php artisan db:seed --class=AiringsTableSeeder
+php artisan storage:link
+php artisan jwt:secret
+php artisan config:clear
+chown -R www-data.www-data /var/www/laravel-praktikum-jarkom/storage
+
+# Nginx configuration for each worker
+for PORT in 8001 8002 8003; do
+    echo "server {
+        listen ${PORT};
+
+        root /var/www/laravel-praktikum-jarkom/public;
+
+        index index.php index.html index.htm;
+        server_name _;
+
+        location / {
+                try_files \$uri \$uri/ /index.php?\$query_string;
+        }
+
+        location ~ \.php$ {
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+        error_log /var/log/nginx/implementasi_error.log;
+        access_log /var/log/nginx/implementasi_access.log;
+    }" > /etc/nginx/sites-available/laravel-worker-${PORT}
+    ln -s /etc/nginx/sites-available/laravel-worker-${PORT} /etc/nginx/sites-enabled/
+done
+
+# Restart Nginx to apply the configuration
+service nginx restart
+```
+#### Testing
+Testing dilakukan dengan ```lynx localhost:[8001/8002/8003]``` sesuai dengan worker laravelnya.
+
+#### Output
+
+### Soal 15
+
+atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
+`POST /auth/register (15)`
+POST /auth/login (16)
+GET /me (17)
+
+#### Script:
+Untuk soal ini, dilakukan benchmarking pada salah satu worker, dalam kasus kelompok kami yaitu pada **Leto**. Leto menjadi worker yang diuji oleh client **Paul**. Sebelum pengujian dilakukan, kami menggunakan file .json yang akan digunakan sebagai body dalam permintaan ke endpoint /api/auth/register.
+
+Jalankan script berikut di Client Paul:
+
+```bash
+echo '
+{
+  "username": "kelompokIT17",
+  "password": "passwordIT17"
+}' > register.json
+```
+
+#### Testing
+Testing dilakukan dengan ```ab -n 100 -c 10 -p register.json -T application/json http://10.72.2.1:[PORT]/api/auth/register``` di terminal dengan port salah satu worker laravel.
+
+#### Output
+
+### Soal 16
+
+atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
+POST /auth/register (15)
+`POST /auth/login (16)`
+GET /me (17)
+
+#### Script:
+
+Jalankan script berikut di client Paul:
+```bash
+echo '
+{
+  "username": "kelompokIT17",
+  "password": "passwordIT17"
+}' > login.json
+```
+
+#### Testing
+Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json http://10.72.2.1:[PORT]/api/auth/login``` di terminal dengan port salah satu worker laravel.
+
+#### Output
+
+### Soal 17
+
+atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
+POST /auth/register (15)
+POST /auth/login (16)
+`GET /me (17)`
+
+#### Script:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d @login.json http://10.72.2.1:8001/api/auth/login > login_output.txt
+```
+
+##### Testing
+Testing dilakukan dengan ```token=$(cat login_output.txt | jq -r '.token')``` untuk mengambil token, lalu ```ab -n 100 -c 10 -H "Authorization: Bearer $token" http://10.72.2.1:[PORT]/api/me``` di terminal.
+
+#### Output
+
+### Soal 18
+
+Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur atreides Channel maka implementasikan Proxy Bind pada Stilgar untuk mengaitkan IP dari Leto, Duncan, dan Jessica. (18)
+
+#### Script:
+
+Lakukan konfigurasi pada Load Balancer **Stilgar.**
+
+```bash
+echo 'upstream laravel_worker {
+    server 10.72.2.1:8001;
+    server 10.72.2.2:8002;
+    server 10.72.2.3:8003;
+}
+
+server {
+    listen 80;
+    server_name atreides.IT17.com www.atreides.IT17.com;
+
+    location / {
+        proxy_pass http://laravel_worker;
+    }
+}
+' > /etc/nginx/sites-available/laravel-worker
+
+ln -s /etc/nginx/sites-available/laravel-worker /etc/nginx/sites-enabled/laravel-worker
+
+service nginx restart
+```
+
+#### Testing
+Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json atreides.IT17.com/api/auth/login``` di Client (misal **Paul**).
+Bisa lakukan pengecekan log akses di /var/log/nginx/implementasi_access.log worker-worker Laravel.
+
+#### Output
+
+### Soal 19
+
+Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Leto, Duncan, dan Jessica. Untuk testing kinerja naikkan 
+- pm.max_children
+- pm.start_servers
+- pm.min_spare_servers
+- pm.max_spare_servers
+sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada PDF.(19)
+
+#### Script:
+
+# trial 1
+```bash
+echo '[www]
+user = www-data
+group = www-data
+listen = /run/php/php8.0-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+pm = dynamic
+pm.max_children = 10
+pm.start_servers = 5
+pm.min_spare_servers = 2
+pm.max_spare_servers = 6' > /etc/php/8.0/fpm/pool.d/www.conf
+
+service php8.0-fpm restart
+```
+
+
+# trial 2
+```bash
+echo '[www]
+user = www-data
+group = www-data
+listen = /run/php/php8.0-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+pm = dynamic
+pm.max_children = 20
+pm.start_servers = 10
+pm.min_spare_servers = 4
+pm.max_spare_servers = 12' > /etc/php/8.0/fpm/pool.d/www.conf
+
+service php8.0-fpm restart
+```
+
+# trial 3
+```bash
+echo '[www]
+user = www-data
+group = www-data
+listen = /run/php/php8.0-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+pm = dynamic
+pm.max_children = 40
+pm.start_servers = 20
+pm.min_spare_servers = 8
+pm.max_spare_servers = 24' > /etc/php/8.0/fpm/pool.d/www.conf
+
+service php8.0-fpm restart
+```
+
+##### Testing
+Testing dilakukan dengan menjalankan script konfigurasi #1 pada tiap worker Laravel, lalu ```ab -n 100 -c 10 -p login.json -T application/json atreides.IT17.com/api/auth/login``` di Client (misal **Paul**), ulangi langkah dengan script konfigurasi #2 dan #3. 
+
+#### Output
+
+### Soal 20
+
+Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Stilgar. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second. (20)
+
+#### Script
+
+Tambahkan algoritma *least_conn* pada konfigurasi di Load Balancer **Stilgar.**
+
+```bash
+echo 'upstream laravel_worker {
+    least_conn;
+    server 10.72.2.1:8001;
+    server 10.72.2.2:8002;
+    server 10.72.2.3:8003;
+}
+
+server {
+    listen 80;
+    server_name atreides.IT17.com www.atreides.IT17.com;
+
+    location / {
+        proxy_pass http://laravel_worker;
+    }
+}
+' > /etc/nginx/sites-available/laravel-worker
+
+ln -s /etc/nginx/sites-available/laravel-worker /etc/nginx/sites-enabled/laravel-worker
+
+service nginx restart
+```
+
+#### Testing
+Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json atreides.IT17.com/api/auth/login``` di Client (misal **Paul**).
+
+#### Output
