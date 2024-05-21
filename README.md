@@ -784,6 +784,7 @@ service nginx restart
 Testing dilakukan dengan ```lynx http://harkonen.IT17.com/dune``` di terminal client (contoh: **Dmitri**)
 
 #### Output
+<img src="img/11.jpg">
 
 ### Soal 12
 
@@ -854,6 +855,13 @@ Testing dilakukan dengan cara:
 2. ```http://harkonen.IT17.com/``` di Client yang tidak diberikan fixed address. (Contoh: **Paul**)
 
 #### Output
+- Client yang diberikan fixed address.
+<img src="img/12-ok.jpg">
+<img src="img/12-ok-dune.jpg"> (/dune)
+
+- Client yang tidak diberikan fixed address.
+<img src="img/12-forbidden.jpg">
+<img src="img/12-forbidden-2.jpg">
 
 ### Soal 13
 
@@ -898,7 +906,6 @@ DROP DATABASE IF EXISTS NAH_ID_WIN;
 
 CREATE USER 'kelompokIT17'@'%' IDENTIFIED BY 'passwordIT17';
 CREATE USER 'kelompokIT17'@'localhost' IDENTIFIED BY 'passwordIT17';
-
 CREATE DATABASE dbkelompokIT17;
 CREATE DATABASE DADDYS_HOME;
 CREATE DATABASE GOJO_IS_BACK;
@@ -934,6 +941,7 @@ service php8.0-fpm start
 Testing dilakukan dengan ```mariadb --host=10.72.4.1 --port=3306 --user=kelompokIT17 --password=passwordIT17 dbkelompokIT17 -e "SHOW DATABASES;"``` di terminal salah satu worker Laravel.
 
 #### Output
+<img src="img/13.jpg">
 
 ### Soal 14
 
@@ -1066,16 +1074,17 @@ service nginx restart
 Testing dilakukan dengan ```lynx localhost:[8001/8002/8003]``` sesuai dengan worker laravelnya.
 
 #### Output
+<img src="img/14-deployed-web.jpg">
 
 ### Soal 15
 
 atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
-`POST /auth/register (15)`
-POST /auth/login (16)
-GET /me (17)
+- `POST /auth/register (15)`
+- POST /auth/login (16)
+- GET /me (17)
 
 #### Script:
-Untuk soal ini, dilakukan benchmarking pada salah satu worker, dalam kasus kelompok kami yaitu pada **Leto**. Leto menjadi worker yang diuji oleh client **Paul**. Sebelum pengujian dilakukan, kami menggunakan file .json yang akan digunakan sebagai body dalam permintaan ke endpoint /api/auth/register.
+Untuk soal ini, dilakukan benchmarking pada salah satu worker, dalam kasus kelompok kami yaitu pada **Leto**. Leto menjadi worker yang diuji oleh client **Paul**. Sebelum pengujian dilakukan, kami menggunakan file .json yang akan digunakan sebagai body dalam permintaan ke endpoint */api/auth/register.*
 
 Jalankan script berikut di Client Paul:
 
@@ -1091,13 +1100,14 @@ echo '
 Testing dilakukan dengan ```ab -n 100 -c 10 -p register.json -T application/json http://10.72.2.1:[PORT]/api/auth/register``` di terminal dengan port salah satu worker laravel.
 
 #### Output
+<img src="img/15.jpg">
 
 ### Soal 16
 
 atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
-POST /auth/register (15)
-`POST /auth/login (16)`
-GET /me (17)
+- POST /auth/register (15)
+- `POST /auth/login (16)`
+- GET /me (17)
 
 #### Script:
 
@@ -1114,13 +1124,14 @@ echo '
 Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json http://10.72.2.1:[PORT]/api/auth/login``` di terminal dengan port salah satu worker laravel.
 
 #### Output
+<img src="img/16.jpg">
 
 ### Soal 17
 
 atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
-POST /auth/register (15)
-POST /auth/login (16)
-`GET /me (17)`
+- POST /auth/register (15)
+- POST /auth/login (16)
+- `GET /me (17)`
 
 #### Script:
 
@@ -1132,6 +1143,8 @@ curl -X POST -H "Content-Type: application/json" -d @login.json http://10.72.2.1
 Testing dilakukan dengan ```token=$(cat login_output.txt | jq -r '.token')``` untuk mengambil token, lalu ```ab -n 100 -c 10 -H "Authorization: Bearer $token" http://10.72.2.1:[PORT]/api/me``` di terminal.
 
 #### Output
+<img src="img/17-token.jpg">
+<img src="img/17.jpg">
 
 ### Soal 18
 
@@ -1168,6 +1181,10 @@ Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json at
 Bisa lakukan pengecekan log akses di /var/log/nginx/implementasi_access.log worker-worker Laravel.
 
 #### Output
+<img src="img/18.jpg">
+<img src="img/18-duncan.jpg">
+<img src="img/18-jess.jpg">
+<img src="img/18-leto.jpg">
 
 ### Soal 19
 
@@ -1245,6 +1262,14 @@ service php8.0-fpm restart
 Testing dilakukan dengan menjalankan script konfigurasi #1 pada tiap worker Laravel, lalu ```ab -n 100 -c 10 -p login.json -T application/json atreides.IT17.com/api/auth/login``` di Client (misal **Paul**), ulangi langkah dengan script konfigurasi #2 dan #3. 
 
 #### Output
+- Trial 1
+<img src="img/19-1.jpg">
+
+- Trial 2
+<img src="img/19-2.jpg">
+
+- Trial 3
+<img src="img/19-3.jpg">
 
 ### Soal 20
 
@@ -1281,3 +1306,4 @@ service nginx restart
 Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json atreides.IT17.com/api/auth/login``` di Client (misal **Paul**).
 
 #### Output
+<img src="img/20.jpg">
