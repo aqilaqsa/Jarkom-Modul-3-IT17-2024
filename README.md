@@ -10,8 +10,33 @@
 
 # Laporan Resmi
 
-### Topologi
+# Daftar Isi
+- [Konfigurasi](#topologi)
+- [Nomor 0](#soal-0)
+- [Nomor 1](#soal-1)
+- [Nomor 2](#soal-2)
+- [Nomor 3](#soal-3)
+- [Nomor 4](#soal-4)
+- [Nomor 5](#soal-5)
+- [Nomor 6](#soal-6)
+- [Nomor 7](#soal-7)
+- [Nomor 8](#soal-8)
+- [Nomor 9](#soal-9)
+- [Nomor 10](#soal-10)
+- [Nomor 11](#soal-11)
+- [Nomor 12](#soal-12)
+- [Nomor 13](#soal-13)
+- [Nomor 14](#soal-14)
+- [Nomor 15](#soal-15)
+- [Nomor 16](#soal-16)
+- [Nomor 17](#soal-17)
+- [Nomor 18](#soal-18)
+- [Nomor 19](#soal-19)
+- [Nomor 20](#soal-20)
 
+### Topologi
+<a name="topologi"></a>
+<img src="img/topo.jpg">
 
 ### Config
 #### Arakis (Router)
@@ -126,7 +151,7 @@ iface eth0 inet static
 	gateway 10.72.1.0
 ```
 
-
+<a name="soal-0"></a>
 ### Soal 0
 Planet Caladan sedang mengalami krisis karena kehabisan spice, klan atreides berencana untuk melakukan eksplorasi ke planet arakis dipimpin oleh duke leto mereka meregister domain name atreides.yyy.com untuk worker Laravel mengarah pada Leto Atreides . Namun ternyata tidak hanya klan atreides yang berusaha melakukan eksplorasi, Klan harkonen sudah mendaftarkan domain name harkonen.yyy.com untuk worker PHP (0) mengarah pada Vladimir Harkonen
 
@@ -192,6 +217,8 @@ service bind9 restart
 <img src="img/1.1.png">
 <img src="img/1.2.png">
 
+
+<a name="soal-1"></a>
 ### Soal 1
 
 Lakukan konfigurasi sesuai dengan peta yang sudah diberikan. 
@@ -271,6 +298,7 @@ echo "$subnet" > /etc/dhcp/dhcpd.conf
 service isc-dhcp-server restart
 ```
 
+<a name="soal-3"></a>
 ### Soal 3
 
 Client yang melalui House Atreides mendapatkan range IP dari [prefix IP].2.15 - [prefix IP].2.25 dan [prefix IP].2 .200 - [prefix IP].2.210
@@ -313,6 +341,7 @@ echo "$subnet" > /etc/dhcp/dhcpd.conf
 service isc-dhcp-server restart
 ```
 
+<a name="soal-4"></a>
 ### Soal 4
 
 Client mendapatkan DNS dari Princess Irulan dan dapat terhubung dengan internet melalui DNS tersebut 
@@ -357,7 +386,7 @@ Uji coba ping google.com di client
 <img src="img/4.2.png">
 
 
-
+<a name="soal-5"></a>
 ### Soal 5
 
 Durasi DHCP server meminjamkan alamat IP kepada Client yang melalui House Harkonen selama 5 menit sedangkan pada client yang melalui House Atreides selama 20 menit. Dengan waktu maksimal dialokasikan untuk peminjaman alamat IP selama 87 menit 
@@ -396,6 +425,7 @@ subnet 10.72.4.0 netmask 255.255.255.0 {
 <img src="img/5.1.png">
 <img src="img/5.2.png">
 
+<a name="soal-6"></a>
 ### Soal 6
 
 Vladimir Harkonen memerintahkan setiap worker(harkonen) PHP, untuk melakukan konfigurasi virtual host untuk website berikut dengan menggunakan php 7.3.
@@ -441,6 +471,7 @@ service nginx restart
 Jalankan Perintah lynx localhost pada masing-masing worker
 <img src="img/6.1.png">
 
+<a name="soal-7"></a>
 ### Soal 7
 
 Aturlah agar Stilgar dari fremen dapat dapat bekerja sama dengan maksimal, lalu lakukan testing dengan 5000 request dan 150 request/second.
@@ -521,6 +552,7 @@ service nginx restart
 Pada node Paul (client) jalankan command " ab -n 1000 -c 100 http://granz.channel.it03.com/ "
 <img src="img/7.1.png">
 
+<a name="soal-8"></a>
 ### Soal 8
 
 Karena diminta untuk menuliskan peta tercepat menuju spice, buatlah analisis hasil testing dengan 500 request dan 50 request/second masing-masing algoritma Load Balancer dengan ketentuan sebagai berikut:
@@ -625,6 +657,7 @@ service nginx restart
 #### Grafik
 <img src="img/Figure_1.png">
 
+<a name="soal-9"></a>
 ### Soal 9
 
 Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunakan 3 worker, 2 worker, dan 1 worker sebanyak 1000 request dengan 10 request/second, kemudian tambahkan grafiknya pada peta.
@@ -678,6 +711,7 @@ echo ' upstream worker {
 #### Grafik
 <img src="img/Figure_2.png">
 
+<a name="soal-10"></a>
 ### Soal 10
 
 Selanjutnya coba tambahkan keamanan dengan konfigurasi autentikasi di LB dengan dengan kombinasi username: “secmart” dan password: “kcksyyy”, dengan yyy merupakan kode kelompok. Terakhir simpan file “htpasswd” nya di /etc/nginx/supersecret/
@@ -736,6 +770,7 @@ Jalankan " lynx http://harkonen.IT17.com/ " pada Paul (Client) untuk melihat apa
 <img src="img/10.2.png">
 <img src="img/10.3.png">
 
+<a name="soal-11"></a>
 ### Soal 11
 
 Lalu buat untuk setiap request yang mengandung /dune akan di proxy passing menuju halaman https://www.dunemovie.com.au/. (11) hint: (proxy_pass)
@@ -786,6 +821,7 @@ Testing dilakukan dengan ```lynx http://harkonen.IT17.com/dune``` di terminal cl
 #### Output
 <img src="img/11.jpg">
 
+<a name="soal-12"></a>
 ### Soal 12
 
 Selanjutnya LB ini hanya boleh diakses oleh client dengan IP [Prefix IP].1.37, [Prefix IP].1.67, [Prefix IP].2.203, dan [Prefix IP].2.207. (12) hint: (fixed in dulu clientnya)
@@ -863,6 +899,7 @@ Testing dilakukan dengan cara:
 <img src="img/12-forbidden.jpg">
 <img src="img/12-forbidden-2.jpg">
 
+<a name="soal-13"></a>
 ### Soal 13
 
 Semua data yang diperlukan, diatur pada Chani dan harus dapat diakses oleh Leto, Duncan, dan Jessica. (13)
@@ -943,6 +980,7 @@ Testing dilakukan dengan ```mariadb --host=10.72.4.1 --port=3306 --user=kelompok
 #### Output
 <img src="img/13.jpg">
 
+<a name="soal-14"></a>
 ### Soal 14
 
 Leto, Duncan, dan Jessica memiliki atreides Channel sesuai dengan quest guide berikut. Jangan lupa melakukan instalasi PHP8.0 dan Composer (14)
@@ -1076,6 +1114,7 @@ Testing dilakukan dengan ```lynx localhost:[8001/8002/8003]``` sesuai dengan wor
 #### Output
 <img src="img/14-deployed-web.jpg">
 
+<a name="soal-15"></a>
 ### Soal 15
 
 atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
@@ -1102,6 +1141,7 @@ Testing dilakukan dengan ```ab -n 100 -c 10 -p register.json -T application/json
 #### Output
 <img src="img/15.jpg">
 
+<a name="soal-16"></a>
 ### Soal 16
 
 atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
@@ -1126,6 +1166,7 @@ Testing dilakukan dengan ```ab -n 100 -c 10 -p login.json -T application/json ht
 #### Output
 <img src="img/16.jpg">
 
+<a name="soal-17"></a>
 ### Soal 17
 
 atreides Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada peta.
@@ -1146,6 +1187,7 @@ Testing dilakukan dengan ```token=$(cat login_output.txt | jq -r '.token')``` un
 <img src="img/17-token.jpg">
 <img src="img/17.jpg">
 
+<a name="soal-18"></a>
 ### Soal 18
 
 Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur atreides Channel maka implementasikan Proxy Bind pada Stilgar untuk mengaitkan IP dari Leto, Duncan, dan Jessica. (18)
@@ -1186,6 +1228,7 @@ Bisa lakukan pengecekan log akses di /var/log/nginx/implementasi_access.log work
 <img src="img/18-jess.jpg">
 <img src="img/18-leto.jpg">
 
+<a name="soal-19"></a>
 ### Soal 19
 
 Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Leto, Duncan, dan Jessica. Untuk testing kinerja naikkan 
@@ -1271,6 +1314,7 @@ Testing dilakukan dengan menjalankan script konfigurasi #1 pada tiap worker Lara
 - Trial 3
 <img src="img/19-3.jpg">
 
+<a name="soal-20"></a>
 ### Soal 20
 
 Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Stilgar. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second. (20)
